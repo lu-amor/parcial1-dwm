@@ -1,0 +1,41 @@
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 3px solid #000;
+    border-radius: 15px;
+    min-width: 200px;
+    height: 250px;
+    align-self: center;
+    gap:20px;
+    border-color: rgb(213, 213, 213);
+}
+
+#title {
+    text-align: center;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+#type {
+    margin-top: -15px;
+    text-align: center;
+}
+
+#button {
+    width: 80%;
+    align-self: center;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 5px;
+    margin-top: -10px;
+}
+
+.image {
+    font-size: 60px;
+    text-align: center;
+}
