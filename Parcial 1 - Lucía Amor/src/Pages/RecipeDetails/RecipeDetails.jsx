@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import classes from "./RecipeDetails.module.css";
 import { useParams, useNavigate } from "react-router-dom";
+import EditModal from "../../Components/EditModal/editModal";
 
-function RecipeDetails({item, closeModal, updateItem}) {
+function RecipeDetails({updateItem}) {
   let { itemId } = useParams();
   const [recipe, setRecipe] = useState("");
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   async function fetchRecipe() {
     try {
@@ -26,6 +28,14 @@ function RecipeDetails({item, closeModal, updateItem}) {
 
   const handleGoHomeBtn = () => {
     navigate("/home");
+  };
+
+  const openModal = () => {
+      setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+      setIsModalOpen(false);
   };
 
   return (
@@ -49,8 +59,11 @@ function RecipeDetails({item, closeModal, updateItem}) {
             <b>Preparation:</b> {recipe.preparation}
           </p>
         </div>
-        <button className="button is-success mt-4">Edit Recipe</button>
+        <button className="button is-success mt-4" onClick={() => openModal()}>Edit Recipe</button>
       </div>
+      {isModalOpen && (
+        <EditModal recipe={recipe} closeModal={closeModal} updateItem={updateItem}/>
+      )}
     </div>
   );
 }

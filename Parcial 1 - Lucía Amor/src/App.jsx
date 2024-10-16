@@ -57,6 +57,20 @@ function App() {
     });
   }, []);
 
+  const updateItemAW = async (updatedRecipe) => {
+    try {
+      const response = await fetch(`${url}/${updatedRecipe.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedRecipe),
+      });
+    } catch (error) {
+      console.log('Error updating item: ', error);
+    }
+  };
+
   const addItem = async (name, description, type, preparation, image) => {
     const newItem = {
       name: name,
@@ -76,12 +90,20 @@ function App() {
     ])});
   };
 
+  const updateRecipe = (updatedRecipe) => {
+    updateItemAW(updatedRecipe);
+    setItems([
+      ...items.map((item) =>
+        item.id === updatedRecipe.id ? updatedRecipe : item),
+    ]);
+  };
+
   return (
     <Routes>
       <Route path="/*" element={<Navigate replace to="/home" />} />
       <Route path="/home" element={<HomePage items={items} deleteItem={deleteItem}/>} />
       <Route path="/agregar" element={<AddRecipe items={items} addItem={addItem}/>} />
-      <Route path="/recipes/:itemId" element={<AnotherPage items={items}/>} />
+      <Route path="/recipes/:itemId" element={<AnotherPage items={items} updateItem={updateRecipe}/>} />
     
     </Routes>
   )
