@@ -24,7 +24,7 @@ function RecipeDetails({updateItem}) {
       promise.then((incomingRecipe) => {
           setRecipe(incomingRecipe);
       });
-  }, []);
+  }, [recipe]);
 
   const handleGoHomeBtn = () => {
     navigate("/home");

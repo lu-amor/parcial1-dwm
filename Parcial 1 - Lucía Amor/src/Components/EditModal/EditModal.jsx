@@ -10,10 +10,10 @@ const [preparation, setPreparation] = useState(recipe ? recipe.preparation : '')
 const [image, setImage] = useState(recipe ? recipe.image : '');
 const navigate = useNavigate();
 
-const handleSubmit = (event) => {
+const handleSubmit = async (event) => {
     event.preventDefault();
     const updatedRecipe = { ...recipe, name, description, type, preparation, image };
-    updateItem(updatedRecipe);
+    await updateItem(updatedRecipe);
     closeModal();
 };
 
@@ -25,8 +25,7 @@ useEffect(() => {
         setPreparation(recipe.preparation);
         setImage(recipe.image);
     }
-}, [recipe]);
-// si la recargas queda actualizada
+}, []);
 
 const handleGoHomeBtn = () => {
     navigate("/home");

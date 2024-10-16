@@ -21,15 +21,15 @@ function HomePage({ items, deleteItem }) {
     );
 
     return (
-    <div>
+    <div className="has-background-danger">
         <header>
             <div className={classes.titleContainer}>
-            <p className="title is-1 mt-6 has-text-danger">Recipes</p>
+            <p className="title is-1 mt-6 has-text-white">Recipes</p>
             </div>
             <div className={`field is-grouped is-align-content-center ${classes.buttonContainer}`}>
                 <p className="control ml-6 mt-3">
                     <input
-                        className="input"
+                        className="input has-background-primary"
                         type="text"
                         placeholder="Find a product"
                         value={searchTerm}
